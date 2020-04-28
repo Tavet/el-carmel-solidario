@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "adb reverse tcp:8081 tcp:8081 && react-native run-android",
+    "apk": "react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/ assets/debug/ index.android.bundle --assets-dest ./android/app/build/ intermediates /res/ merged/debug",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
