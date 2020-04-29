@@ -55,6 +55,7 @@ const LoginScreen = ({navigation}) => {
 
   onPress = () => {
     console.log('presionando');
+    navigation.navigate('Home');
   };
 
   return (
