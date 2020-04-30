@@ -5,6 +5,7 @@ import {
   Image,
   StyleSheet,
   TouchableHighlight,
+  Alert
 } from 'react-native';
 import logo from '_assets/images/logo.png';
 import {Typography, Colors, Mixins, Spacing} from '../../styles';
@@ -54,7 +55,6 @@ const LoginScreen = ({navigation}) => {
   };
 
   onPress = () => {
-    console.log('presionando');
     navigation.navigate('Home');
   };
 
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   logo: {
     alignSelf: 'center',
     resizeMode: 'center',
-    width: Mixins.scaleSize(450),
+    width: Mixins.scaleSize(320),
     height: Mixins.scaleSize(150),
   },
   text: {

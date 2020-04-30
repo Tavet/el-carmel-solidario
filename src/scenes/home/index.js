@@ -1,29 +1,68 @@
 import React from 'react';
 import {SafeAreaView, Text, StyleSheet, Dimensions} from 'react-native';
-import {Typography, Colors, Mixins} from '../../styles';
+import {Appbar, DataTable} from 'react-native-paper';
+import {Typography, Colors} from '../../styles';
 import _ from 'lodash';
 
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from 'react-native-chart-kit';
-
-import t from 'tcomb-form-native';
+import {BarChart} from 'react-native-chart-kit';
 
 const HomeScreen = ({navigation}) => {
+  const _goBack = () => console.log('Went back');
+
+  const _handleSearch = () => console.log('Searching');
+
+  const _handleMore = () => console.log('Shown more');
   return (
+    <>
+      <Appbar.Header>
+        <Appbar.BackAction onPress={_goBack} />
+        <Appbar.Content title="Inicio" subtitle="Donaciones realizadas" />
+        <Appbar.Action icon="magnify" onPress={_handleSearch} />
+        <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
+      </Appbar.Header>
     <SafeAreaView style={styles.container}>
+      <Appbar style={styles.bottom}>
+        <Appbar.Action
+          icon="home"
+          onPress={() => console.log('Home pressed')}
+        />
+      </Appbar>
       <Text style={styles.title}>Donaciones</Text>
+
+      <DataTable>
+        <DataTable.Header>
+          <DataTable.Title>Dessert</DataTable.Title>
+          <DataTable.Title numeric>Calories</DataTable.Title>
+          <DataTable.Title numeric>Fat</DataTable.Title>
+        </DataTable.Header>
+
+        <DataTable.Row>
+          <DataTable.Cell>Frozen yogurt</DataTable.Cell>
+          <DataTable.Cell numeric>159</DataTable.Cell>
+          <DataTable.Cell numeric>6.0</DataTable.Cell>
+        </DataTable.Row>
+
+        <DataTable.Row>
+          <DataTable.Cell>Ice cream sandwich</DataTable.Cell>
+          <DataTable.Cell numeric>237</DataTable.Cell>
+          <DataTable.Cell numeric>8.0</DataTable.Cell>
+        </DataTable.Row>
+
+        <DataTable.Pagination
+          page={1}
+          numberOfPages={3}
+          onPageChange={(page) => {
+            console.log(page);
+          }}
+          label="1-2 of 6"
+        />
+      </DataTable>
       <BarChart
         data={{
-          labels: ['30 Abril', '1 Mayo', '2 Mayo', '3 Mayo', '4 Mayo', '5 Mayo'],
+          labels: ['Febrero', 'Marzo', 'Abril', 'Mayo'],
           datasets: [
             {
-              data: [20000, 34000, 80000, 95000, 45000, 10000],
+              data: [73500, 47600, 80000, 95000],
             },
           ],
         }}
@@ -46,46 +85,27 @@ const HomeScreen = ({navigation}) => {
         }}
       />
     </SafeAreaView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    paddingTop: 50,
     alignItems: 'center',
   },
-  logo: {
-    alignSelf: 'center',
-    resizeMode: 'center',
-    width: Mixins.scaleSize(450),
-    height: Mixins.scaleSize(150),
+  bottom: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   title: {
     fontSize: Typography.FONT_SIZE_18,
     fontFamily: Typography.FONT_FAMILY_BOLD,
     color: Colors.SECONDARY,
     paddingBottom: 20,
-  },
-  form: {
-    paddingTop: 25,
-    fontSize: Typography.FONT_SIZE_16,
-    fontFamily: Typography.FONT_FAMILY_REGULAR,
-  },
-  buttonText: {
-    fontSize: Typography.FONT_SIZE_16,
-    fontFamily: Typography.FONT_FAMILY_BOLD,
-    color: 'white',
-    alignSelf: 'center',
-  },
-  button: {
-    width: Mixins.scaleSize(130),
-    height: 36,
-    backgroundColor: Colors.PRIMARY,
-    borderRadius: 30,
-    marginBottom: 10,
-    alignSelf: 'center',
-    justifyContent: 'center',
   },
 });
 

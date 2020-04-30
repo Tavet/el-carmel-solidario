@@ -1,4 +1,4 @@
-import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createStackNavigator} from 'react-navigation-stack';
 
 import HomeScreen from '_scenes/home';
 
@@ -9,11 +9,9 @@ const TabNavigatorConfig = {
 };
 
 const RouteConfigs = {
-  Home: {
-    screen: HomeScreen,
-  },
+  Home: HomeScreen,
 };
 
-const AppNavigator = createBottomTabNavigator(RouteConfigs, TabNavigatorConfig);
+const AppNavigator = createStackNavigator(RouteConfigs, TabNavigatorConfig);
 
 export default AppNavigator;
